@@ -23,8 +23,8 @@ const OnBoardScreen = () => {
 
   return (
     <Onboarding
-    onSkip={()=>navigation.replace("Home")}
-    onDone={()=>navigation.replace("Home")}
+    onSkip={()=>navigation.replace("Login")}
+    onDone={()=>navigation.replace("Login")}
     DotComponent={DotComponent}
     bottomBarColor='#FFD662'
   pages={[
