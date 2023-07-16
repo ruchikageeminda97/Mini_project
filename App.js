@@ -1,15 +1,24 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Home from './screens/Home'
+import { StatusBar } from 'expo-status-bar';
+import { Text, View } from 'react-native';
 
-const App = () => {
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import OnBoardScreen from './screens/Onboardscreen';
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   return (
-   <View className="bg-yellow-500 flex-1 items-center justify-center">
-    <Text className="font-bold">ffff</Text>
-    <Text className="font-bold">ffff</Text>
-     <Text className="font-bold">ffff</Text>
-   </View>
-  )
+    
+    <NavigationContainer>
+
+      <Stack.Navigator>
+        <Stack.Screen options={{headerShown:false}} name="onboard" component={OnBoardScreen} />
+      </Stack.Navigator>
+      <StatusBar style="auto" />
+      </NavigationContainer>
+      
+  );
 }
 
-export default App
+
