@@ -1,17 +1,19 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import Register from './Register';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { KeyboardAvoidingView } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Register = ({navigation}) => {
 
+   const [isPasswordShow, setIsPasswordShow]= useState(false) 
 
-const Login = ({navigation}) => {
   const [fontsLoaded] = useFonts({
     'Ubuntumedium': require('../assets/fonts/Ubuntu-Medium.ttf'),
     
@@ -31,19 +33,39 @@ const Login = ({navigation}) => {
       className="w-36 h-20 mt-16"
       />
       <View className="mt-4">
-        <Text className="text-red-800 text-[20px] font-semibold" style={{ fontFamily:'Ubuntumedium'}}>Login</Text>
+        <Text className="text-red-800 text-[20px] font-semibold" style={{ fontFamily:'Ubuntumedium'}}>Register</Text>
+      </View>
+
+      <View className="border-2 border-[#A6A9AB] w-[90%] h-11 mt-8 rounded-xl flex-row">
+            <View className="justify-center ml-3">
+           
+            <Ionicons name="person-outline" size={22} color="#A6A9AB" />
+            </View>
+            <View className="justify-center ml-2">
+                <TextInput placeholder='Name' placeholderTextColor={'#A6A9AB'} />
+            </View>
       </View>
 
 {/* Email */}
 
-      <View className="border-2 border-[#A6A9AB] w-[90%] h-11 mt-8 rounded-xl flex-row">
-            <View className="justify-center ml-3">
+      <View className="border-2 border-[#A6A9AB] w-[90%] h-11 mt-4 rounded-xl flex-row">
+            <View className="justify-center ml-2">
             <MaterialCommunityIcons name="email-open-multiple-outline" size={23} color="#A6A9AB" />
             </View>
-            <View className="justify-center ml-3">
+            <View className="justify-center ml-2.5">
                 <TextInput placeholder='E-mail' placeholderTextColor={'#A6A9AB'} />
             </View>
       </View>
+
+      <View className="border-2 border-[#A6A9AB] w-[90%] h-11 mt-4 rounded-xl flex-row">
+            <View className="justify-center ml-3">
+            <FontAwesome name="mobile" size={32} color="#A6A9AB" />
+            </View>
+            <View className="justify-center ml-3">
+                <TextInput placeholder='mobile' placeholderTextColor={'#A6A9AB'} />
+            </View>
+      </View>
+
 
 {/* Password */}
 
@@ -52,28 +74,30 @@ const Login = ({navigation}) => {
               <View className="justify-center ml-1 mb-2">
                 <EvilIcons name="unlock" size={36} color="#A6A9AB" /></View>
               
-              <View className="justify-center ml-1.5">
-                <TextInput secureTextEntry={true} placeholder='password' placeholderTextColor={'#A6A9AB'} /></View>
+              <View className="justify-center ml-0">
+                <TextInput secureTextEntry={!isPasswordShow} placeholder='password' placeholderTextColor={'#A6A9AB'} /></View>
           </View>
 
-          <TouchableOpacity className="justify-center  mr-2 ">
-            <FontAwesome5 name="eye-slash" size={20} color="#A6A9AB" /></TouchableOpacity>
+          <TouchableOpacity className="justify-center  mr-2"
+          onPress={()=>setIsPasswordShow(!isPasswordShow)}
+          >
+            {isPasswordShow ? 
+            <Entypo name="eye" size={24} color="#A6A9AB" />
+        
+        : <FontAwesome5 name="eye-slash" size={20} color="#A6A9AB" />
+        
+        }
+           </TouchableOpacity>
 
       </View>
-{/* Forget Area */}  
-    <View className="flex ml-1 w-[90%] h-5.5 rounded-xl flex-row justify-between">
-      <View className="flex flex-row space-x-1">
-        <Text className="text-[#6A6C71]">Forgot Password?</Text>
-        <TouchableOpacity><Text className="text-blue-500">Reset it</Text></TouchableOpacity>
-      </View>
-    </View>
+
 
 {/* Login Button */}
     <TouchableOpacity className="
-        bg-[#FFD662] shadow-md shadow-cyan-950 items-center 
+        bg-[#FFD662] shadow-sm shadow-cyan-950 items-center 
           justify-center w-[90%] h-11 mt-4 rounded-xl">
       <View >  
-          <Text className="text-lg font-semibold">Login</Text>
+          <Text className="text-lg font-semibold">Register</Text>
       </View>
 
     </TouchableOpacity>
@@ -86,24 +110,24 @@ const Login = ({navigation}) => {
       </View>
 
   <TouchableOpacity
-    onPress={() => navigation.navigate('Register')}
+  onPress={() => navigation.navigate('Login')}
   className="mt-2">
-    <Text className="text-blue-500 font-semibold">Register here</Text>
+    <Text className="text-blue-500 font-semibold">Login here</Text>
   </TouchableOpacity>
 
       <TouchableOpacity className="flex flex-row w-[90%] h-14 mt-4 rounded-lg bg-[#e1e1e1] items-center">
           <Image source={require('../assets/icons/apple.png')} className="h-9 w-9 ml-4"/>
-          <Text className="ml-5 text-[18px] font-semibold">Continued with Apple</Text>
+          <Text className="ml-5 text-[17px] font-semibold">Continued with Apple</Text>
       </TouchableOpacity>
 
       <TouchableOpacity className="flex flex-row w-[90%] h-14 mt-3 rounded-lg bg-[#e1e1e1] items-center">
           <Image source={require('../assets/icons/google.png')} className="h-9 w-9 ml-4"/>
-          <Text className="ml-5 text-[18px] font-semibold">Continued with Google</Text>
+          <Text className="ml-5 text-[17px] font-semibold">Continued with Google</Text>
       </TouchableOpacity>
       
       <TouchableOpacity className="flex flex-row w-[90%] h-14 mt-3 rounded-lg bg-[#e1e1e1] items-center">
           <Image source={require('../assets/icons/facebook.png')} className="h-9 w-9 ml-4"/>
-          <Text className="ml-5 text-[18px] font-semibold">Continued with Facebook</Text>
+          <Text className="ml-5 text-[17px]  ">Continued with Facebook</Text>
       </TouchableOpacity>
       
 
@@ -111,4 +135,4 @@ const Login = ({navigation}) => {
   )
 }
 
-export default Login
+export default Register
