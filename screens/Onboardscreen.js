@@ -14,7 +14,7 @@ const OnBoardScreen = () => {
        <View>
         <View
           className={`mx-1 w-2 h-2 ${
-            selected ? "bg-red-700 w-5" : "bg-white"
+            selected ? "bg-black w-4" : "bg-white"
           } rounded-full`}
         ></View>
       </View>
@@ -34,8 +34,8 @@ const OnBoardScreen = () => {
       image: <Image source={require('../assets/onboarding-images/onboard1.png')} 
         className="w-72 h-72 object-contain"
         />,
-      title: 'Library',
-      subtitle: 'Library on your finger Tips', 
+      title: 'Welcome to ChatLib',
+      subtitle: 'Best library experience and get knowledge for the success user journey.', 
       
     },
 
@@ -44,8 +44,8 @@ const OnBoardScreen = () => {
         image: <Image source={require('../assets/onboarding-images/onboard22.png')}
         className=" w-72 h-72 object-contain"
         />,
-        title: 'Onboarding 2',
-        subtitle: 'Done with React Native Onboarding Swiper',
+        title: 'Library ',
+        subtitle: 'Our library is at your fingertips. eaily find and read your favorite books with just few taps.',
       },
 
       {
@@ -53,8 +53,8 @@ const OnBoardScreen = () => {
         image: <Image source={require('../assets/onboarding-images/onboard3.png')} 
         className=" w-72 h-72 object-contain"
         />,
-        title: 'Onboarding 3',
-        subtitle: 'Done with React Native Onboarding Swiper',
+        title: 'Search Books',
+        subtitle: 'Ai Assistant for libraries to give answers in the most accurate and easy manner for queries. ',
       },
 
 

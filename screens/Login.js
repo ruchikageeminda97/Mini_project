@@ -64,13 +64,17 @@ const Login = ({navigation}) => {
     <View className="flex ml-1 w-[90%] h-5.5 rounded-xl flex-row justify-between">
       <View className="flex flex-row space-x-1">
         <Text className="text-[#6A6C71]">Forgot Password?</Text>
-        <TouchableOpacity><Text className="text-blue-500">Reset it</Text></TouchableOpacity>
+        <TouchableOpacity
+           onPress={() => navigation.navigate('Reset')}
+          ><Text className="text-blue-900 font-semibold">Reset it</Text></TouchableOpacity>
       </View>
     </View>
 
 {/* Login Button */}
-    <TouchableOpacity className="
-        bg-[#FFD662] shadow-md shadow-cyan-950 items-center 
+    <TouchableOpacity
+    onPress={()=>navigation.navigate('Home')}
+    className="
+        bg-[#FFD662] shadow-sm shadow-yellow-600 items-center 
           justify-center w-[90%] h-11 mt-4 rounded-xl">
       <View >  
           <Text className="text-lg font-semibold">Login</Text>
@@ -88,7 +92,7 @@ const Login = ({navigation}) => {
   <TouchableOpacity
     onPress={() => navigation.navigate('Register')}
   className="mt-2">
-    <Text className="text-blue-500 font-semibold">Register here</Text>
+    <Text className="text-blue-900 font-semibold">Register here</Text>
   </TouchableOpacity>
 
       <TouchableOpacity className="flex flex-row w-[90%] h-14 mt-4 rounded-lg bg-[#e1e1e1] items-center">
