@@ -1,7 +1,6 @@
 import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 
-import {signInWithPopup} from 'firebase/auth';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -10,10 +9,39 @@ import { useFonts } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { async } from '@firebase/util';
-import { auth, googleProvider } from '../firebase';
+
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Auth } from 'firebase/auth';
+
+
+
 
 const Register = ({navigation}) => {
+
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+
+
+
+  const handleLogin = ()=>{
+    e.preventDefault();
+
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
+
+
+  }
 
    const [isPasswordShow, setIsPasswordShow]= useState(false) 
 
@@ -28,14 +56,7 @@ const Register = ({navigation}) => {
     return null;
   }
 
-  const signUpWithGoogle = async () => {
-    try{
-       const result = signInWithPopup(auth , googleProvider);
-       console.log("logged") 
-    }catch(err){
-      console.log("err");
-    }
-  }
+  
 
 
   return (
@@ -66,7 +87,7 @@ const Register = ({navigation}) => {
             <MaterialCommunityIcons name="email-open-multiple-outline" size={23} color="#A6A9AB" />
             </View>
             <View className="justify-center ml-2.5">
-                <TextInput placeholder='E-mail' placeholderTextColor={'#A6A9AB'} />
+                <TextInput placeholder='E-mail' placeholderTextColor={'#A6A9AB'} onChange={e=>setEmail(e.target.value)}/>
             </View>
       </View>
 
@@ -88,7 +109,7 @@ const Register = ({navigation}) => {
                 <EvilIcons name="unlock" size={36} color="#A6A9AB" /></View>
               
               <View className="justify-center ml-0">
-                <TextInput secureTextEntry={!isPasswordShow} placeholder='password' placeholderTextColor={'#A6A9AB'} /></View>
+                <TextInput secureTextEntry={!isPasswordShow} placeholder='password' placeholderTextColor={'#A6A9AB'} onChange={e=>setPassword(e.target.value)}/></View>
           </View>
 
           <TouchableOpacity className="justify-center  mr-2"
@@ -136,7 +157,7 @@ const Register = ({navigation}) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-      onPress={signUpWithGoogle}
+      
       className="flex flex-row w-[90%] h-14 mt-3 rounded-lg bg-[#e1e1e1] items-center">
           <Image source={require('../assets/icons/google.png')} className="h-9 w-9 ml-4"/>
           <Text className="ml-5 text-[17px] font-semibold">Continued with Google</Text>

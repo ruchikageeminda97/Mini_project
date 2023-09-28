@@ -1,24 +1,15 @@
-
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-// import { getFirestore } from "firebase/firestore";
-// import { getStorage } from "firebase/";
+import { getAuth } from "firebase/auth";
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBFvLmRJSs7Y0nrzqHPhG4l_j1l5zcN_A8",
-    authDomain: "mini-project-b7ec8.firebaseapp.com",
-    projectId: "mini-project-b7ec8",
-    storageBucket: "mini-project-b7ec8.appspot.com",
-    messagingSenderId: "741645006539",
-    appId: "1:741645006539:web:64c036d240916b2afd0d4e"
-  };
-  
+  apiKey: process.env.REACT_PP_FIREBASE_KEY,
+  authDomain: "chatbot-1e300.firebaseapp.com",
+  projectId: "chatbot-1e300",
+  storageBucket: "chatbot-1e300.appspot.com",
+  messagingSenderId: "681716370625",
+  appId: "1:681716370625:web:2a220ab359c81f388b5840"
+};
 
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
-
-// export const db = getFirestore(app);
-// export const storage = getStorage(app);
+export const auth = getAuth()
